@@ -1,0 +1,13 @@
+1. (7/30) FIRST DO: using lambda expression, arguing "std::threads&" and make it barrier with join() member
+- Task L1.1 : In the base class `TrafficObject`, set up a thread barrier in its destructor that ensures
+that all the thread objects in the member vector` _threads` are joined.
+
+2. (8/1) DONE: argument with class(*this) and class member(drive()) as  & reference
+- Task L1.2 : In the `Vehicle` class, start a thread with the member function `drive` and the
+object `this` as the launch parameters. Also, add the created thread into the `_thread` vector of
+the parent class.
+
+
+3. (8/1) DONE: Observe the nTH on the top function and see the change of nTH according to nVehicles
+- Task L1.3 : Vary the number of simulated vehicles in `main` and use the top function on the terminal
+or the task manager of your system to observe the number of threads used by the simulation.
