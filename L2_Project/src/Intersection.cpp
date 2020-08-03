@@ -33,7 +33,9 @@ void WaitingVehicles::permitEntryToFirstInQueue()
     auto Prom_begin = _promises.begin();
 
     // fulfill promise and send signal back that permission to enter has been granted
-    Prom_begin->get_future();
+    // here is the error. promise has to be set with ->set_value(); !!
+
+    Prom_begin->set_value();
 
     // remove the begin element from both queue
     _vehicles.erase(Veh_begin);
