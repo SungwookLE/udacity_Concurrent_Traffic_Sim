@@ -25,7 +25,20 @@ void WaitingVehicles::permitEntryToFirstInQueue()
 {
     // L2.3 : First, get the entries from the front of _promises and _vehicles. 
     // Then, fulfill promise and send signal back that permission to enter has been granted.
-    // Finally, remove the front elements from both queues. 
+    // Finally, remove the front elements from both queues.
+
+    // (8/3) DONE:
+    // get entries from the front of both queues
+    auto Veh_begin = _vehicles.begin();
+    auto Prom_begin = _promises.begin();
+
+    // fulfill promise and send signal back that permission to enter has been granted
+    Prom_begin->get_future();
+
+    // remove the begin element from both queue
+    _vehicles.erase(Veh_begin);
+    _promises.erase(Prom_begin);
+    
 }
 
 /* Implementation of class "Intersection" */
@@ -64,13 +77,14 @@ void Intersection::addVehicleToQueue(std::shared_ptr<Vehicle> vehicle)
     // L2.2 : First, add the new vehicle to the waiting line by creating a promise, a corresponding future and then adding both to _waitingVehicles. 
     // Then, wait until the vehicle has been granted entry.
 
-    // (뭘 기다리는 거야?? 아니 펑션이 잇어야 .. 펑션을 통과해서 나온얘를 겟하고 쓰는거 아니었음? 잘 모르겟네.. 8/2)
+    // (8/3) DONE: (READ FOLLOW THREE LINE)
     std::promise<void> prms_new_vehicle_allowed_enter;
+    // In the futre, void return will be granted through the promise
     std::future<void> ftrs_new_vehicle_allowed_enter = prms_new_vehicle_allowed_enter.get_future();
+    // member pushBack(), the promise is taken
     _waitingVehicles.pushBack(vehicle, std::move(prms_new_vehicle_allowed_enter));
-
+    // wait until the member pushBack() is finished
     ftrs_new_vehicle_allowed_enter.wait();
-
 
     std::cout << "Intersection #" << _id << ": Vehicle #" << vehicle->getID() << " is granted entry." << std::endl;
 }

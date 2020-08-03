@@ -84,9 +84,9 @@ void Vehicle::drive()
                 // that is <intersection>_currDestination , and it is used like that :
                 // _currDestination -> addVehicleToQueue( get_shared_this( ) );
                 // get means barrier. (the pthread calculate waits. )
-                std::future<void> ftrEntryGranted = std::async(&Intersection::addVehicleToQueue,_currDestination, get_shared_this());
+                auto ftrEntryGranted = std::async(&Intersection::addVehicleToQueue,_currDestination, get_shared_this());
+                ftrEntryGranted.wait();
                 ftrEntryGranted.get();
-
                 // slow down and set intersection flag
                 _speed /= 10.0;
                 hasEnteredIntersection = true;
