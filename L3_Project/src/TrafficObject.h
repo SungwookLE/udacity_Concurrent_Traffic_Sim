@@ -28,13 +28,14 @@ public:
 
     // typical behaviour methods
     virtual void simulate(){};
-    // (8/5) L3.2 DONE: add for trafficobject class mutex;
-    static std::mutex _mtxCout;
+    
 protected:
     ObjectType _type;                 // identifies the class type
     int _id;                          // every traffic object has its own unique id
     double _posX, _posY;              // vehicle position in pixels
     std::vector<std::thread> threads; // holds all threads that have been launched within this object
+    // (8/5) L3.2 DONE: add for trafficobject class mutex;
+    static std::mutex _mtxCout; // protect can be accessed in function sub-low inheritated class 
 
 private:
     static int _idCnt; // global variable for counting object ids
