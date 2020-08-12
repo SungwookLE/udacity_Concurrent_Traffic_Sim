@@ -16,7 +16,8 @@ T MessageQueue<T>::receive()
     std::unique_lock<std::mutex> _ulock(_mutex);
     _condition.wait(_ulock, [this] { return !_queue.empty();});
     T v = std::move(_queue.back());
-    _queue.pop_back();
+    // (8/12) debugging : it works ( pop_back() --> clear() )
+    _queue.clear();
 
     return v;
 }
@@ -54,13 +55,12 @@ void TrafficLight::waitForGreen()
     // FP.5b : add the implementation of the method waitForGreen, in which an infinite while-loop 
     // runs and repeatedly calls the receive function on the message queue. 
     // Once it receives TrafficLightPhase::green, the method returns.
-
+    
     // (8/12) DONE: 
     while(true){
-        _currentPhase=_messageQueue.receive();
-
-        if (_currentPhase == TrafficLightPhase::green)
-        {
+        
+        if ( _messageQueue.receive() == TrafficLightPhase::green) {
+            _currentPhase=_messageQueue.receive();
             break;
         }
     }
@@ -102,7 +102,6 @@ void TrafficLight::cycleThroughPhases()
     
     while (true)
     {
-        
         if ( sec.count() > cycle_duration ) {
             if (_currentPhase == TrafficLightPhase::red){ 
                 _currentPhase=TrafficLightPhase::green;

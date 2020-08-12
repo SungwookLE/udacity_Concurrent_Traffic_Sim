@@ -34,6 +34,14 @@ TrafficLight.h
 TrafficObject.h
 /home/joker1251/Desktop/OWEN/CppND-Program-a-Concurrent-Traffic-Simulation-Sungwook/Concurrent-Traffic-Simulation/src/TrafficObject.h
 
+/home/joker1251/Desktop/OWEN/CppND-Program-a-Concurrent-Traffic-Simulation-Sungwook/Concurrent-Traffic-Simulation/src/TrafficLight.cpp
+iostream
+-
+random
+-
+TrafficLight.h
+/home/joker1251/Desktop/OWEN/CppND-Program-a-Concurrent-Traffic-Simulation-Sungwook/Concurrent-Traffic-Simulation/src/TrafficLight.h
+
 /home/joker1251/Desktop/OWEN/CppND-Program-a-Concurrent-Traffic-Simulation-Sungwook/Concurrent-Traffic-Simulation/src/TrafficLight.h
 mutex
 -
