@@ -47,18 +47,15 @@ class TrafficLight : public TrafficObject
 {
 public:
     // constructor / desctructor
-
+    TrafficLight();
     // getters / setters
-
     // typical behaviour methods
-
     // (8/6) FP.1 DONE: public methods ,,void waitForGreen() and ,,void simulate()
     void waitForGreen();
     void simulate();
 
     // (8/6) FP.1 DONE: „TrafficLightPhase getCurrentPhase()
     TrafficLightPhase getCurrentPhase();
-    
 
 private:
    

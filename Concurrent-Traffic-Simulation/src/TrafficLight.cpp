@@ -42,17 +42,30 @@ void MessageQueue<T>::send(T &&msg)
 
 /* Implementation of class "TrafficLight" */
 
-/* 
+
 TrafficLight::TrafficLight()
 {
     _currentPhase = TrafficLightPhase::red;
 }
+
 
 void TrafficLight::waitForGreen()
 {
     // FP.5b : add the implementation of the method waitForGreen, in which an infinite while-loop 
     // runs and repeatedly calls the receive function on the message queue. 
     // Once it receives TrafficLightPhase::green, the method returns.
+
+    // (8/12) DONE: 
+    while(true){
+        _currentPhase=_messageQueue.receive();
+
+        if (_currentPhase == TrafficLightPhase::green)
+        {
+            break;
+        }
+    }
+
+    return;
 }
 
 TrafficLightPhase TrafficLight::getCurrentPhase()
@@ -60,7 +73,7 @@ TrafficLightPhase TrafficLight::getCurrentPhase()
     return _currentPhase;
 }
 
-*/
+
 void TrafficLight::simulate()
 {
     // FP.2b : Finally, the private method „cycleThroughPhases“ should be started in a thread
@@ -83,12 +96,14 @@ void TrafficLight::cycleThroughPhases()
 
     double cycle_duration = rand() % 3 + 4;
     
-    std::chrono::system_clock::time_point Start;
-    std::chrono::system_clock::time_point End;
-    std::chrono::milliseconds milli = std::chrono::duration_cast<std::chrono::seconds>(End-Start);
-    while(true){
+    std::chrono::system_clock::time_point Start= std::chrono::system_clock::now();
+    std::chrono::system_clock::time_point End= std::chrono::system_clock::now();
+    std::chrono::duration<double> sec = (End-Start);
+    
+    while (true)
+    {
         
-        if ( milli.count() > cycle_duration ) {
+        if ( sec.count() > cycle_duration ) {
             if (_currentPhase == TrafficLightPhase::red){ 
                 _currentPhase=TrafficLightPhase::green;
                 std::this_thread::sleep_for(std::chrono::milliseconds(1));
@@ -99,14 +114,11 @@ void TrafficLight::cycleThroughPhases()
                 std::this_thread::sleep_for(std::chrono::milliseconds(1));
                 Start = std::chrono::system_clock::now();
             }
-
-            End = std::chrono::system_clock::now();
-            milli = std::chrono::duration_cast<std::chrono::seconds>(End-Start);
-            
         }
-
+        
+        End = std::chrono::system_clock::now();
+        sec = (End-Start);
         _messageQueue.send(std::move(_currentPhase));
-
     }
 }
 
