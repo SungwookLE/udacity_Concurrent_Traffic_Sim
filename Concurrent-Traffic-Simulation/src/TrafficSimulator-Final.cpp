@@ -22,15 +22,15 @@ void createTrafficObjects_Paris(std::vector<std::shared_ptr<Street>> &streets, s
     }
 
     // position intersections in pixel coordinates (counter-clockwise)
-    intersections.at(0)->setPosition(385, 270);
-    intersections.at(1)->setPosition(1240, 80);
-    intersections.at(2)->setPosition(1625, 75);
-    intersections.at(3)->setPosition(2110, 75);
-    intersections.at(4)->setPosition(2840, 175);
-    intersections.at(5)->setPosition(3070, 680);
-    intersections.at(6)->setPosition(2800, 1400);
-    intersections.at(7)->setPosition(400, 1100);
-    intersections.at(8)->setPosition(1700, 900); // central plaza
+    intersections.at(0)->setPosition(385/2, 270/2);
+    intersections.at(1)->setPosition(1240/2, 80/2);
+    intersections.at(2)->setPosition(1625/2, 75/2);
+    intersections.at(3)->setPosition(2110/2, 75/2);
+    intersections.at(4)->setPosition(2840/2, 175/2);
+    intersections.at(5)->setPosition(3070/2, 680/2);
+    intersections.at(6)->setPosition(2800/2, 1400/2);
+    intersections.at(7)->setPosition(400/2, 1100/2);
+    intersections.at(8)->setPosition(1700/2, 900/2); // central plaza
 
     // create streets and connect traffic objects
     int nStreets = 8;

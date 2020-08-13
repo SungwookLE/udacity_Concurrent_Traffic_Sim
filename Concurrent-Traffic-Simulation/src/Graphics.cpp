@@ -26,9 +26,11 @@ void Graphics::loadBackgroundImg()
 
     // load image and create copy to be used for semi-transparent overlay
     cv::Mat background = cv::imread(_bgFilename);
-    _images.push_back(background);         // first element is the original background
-    _images.push_back(background.clone()); // second element will be the transparent overlay
-    _images.push_back(background.clone()); // third element will be the result image for display
+    cv::Mat Destin;
+    cv::resize(background, Destin, cv::Size(background.cols/2, background.rows/2));
+    _images.push_back(Destin);         // first element is the original background
+    _images.push_back(Destin.clone()); // second element will be the transparent overlay
+    _images.push_back(Destin.clone()); // third element will be the result image for display
 }
 
 void Graphics::drawTrafficObjects()
