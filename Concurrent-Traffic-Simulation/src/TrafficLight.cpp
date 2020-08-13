@@ -30,8 +30,7 @@ void MessageQueue<T>::send(T &&msg)
     // as well as _condition.notify_one() to add a new message to the queue and afterwards send a notification.
     
     // (8/10) DONE: monitor pattern(?) condition variable used!
-    // simulate some work
-    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    
     std::lock_guard<std::mutex> _ulock(_mutex);
     // add vector to queue
     _queue.push_back(std::move(msg));
@@ -58,9 +57,8 @@ void TrafficLight::waitForGreen()
     
     // (8/12) DONE: 
     while(true){
-        
-        if ( _messageQueue.receive() == TrafficLightPhase::green) {
-            _currentPhase=_messageQueue.receive();
+        _currentPhase=_messageQueue.receive();
+        if ( _currentPhase == TrafficLightPhase::green) {
             break;
         }
     }
@@ -94,30 +92,39 @@ void TrafficLight::cycleThroughPhases()
 
     // (8/10) DONE: 
 
-    double cycle_duration = rand() % 3 + 4;
-    
-    std::chrono::system_clock::time_point Start= std::chrono::system_clock::now();
-    std::chrono::system_clock::time_point End= std::chrono::system_clock::now();
-    std::chrono::duration<double> sec = (End-Start);
+    // (8/13) CODE REVIEW (REQUIRED)    
+    std::random_device rd;
+    std::mt19937 eng(rd());
+    std::uniform_int_distribution<> distr(4000, 6000);
+    int cycle_duration = distr(eng); //Duration of a single simulation cycle in seconds, is randomly chosen
+    std::chrono::system_clock::time_point Start = std::chrono::system_clock::now();
+    std::chrono::system_clock::time_point End = std::chrono::system_clock::now();
+    std::chrono::milliseconds msec = std::chrono::duration_cast<std::chrono::milliseconds>(End - Start);
     
     while (true)
     {
-        if ( sec.count() > cycle_duration ) {
-            if (_currentPhase == TrafficLightPhase::red){ 
-                _currentPhase=TrafficLightPhase::green;
-                std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        if (msec.count() > cycle_duration)
+        {
+            std::cout <<"      duration: "<< cycle_duration << std::endl;
+            if (_currentPhase == TrafficLightPhase::red)
+            {
+                _currentPhase = TrafficLightPhase::green;
                 Start = std::chrono::system_clock::now();
             }
-            else{
+            else
+            {
                 _currentPhase=TrafficLightPhase::red;
-                std::this_thread::sleep_for(std::chrono::milliseconds(1));
                 Start = std::chrono::system_clock::now();
             }
         }
-        
+
+        /* (8/13) CODE REVIEW: Randomly choose the cycle duration for the next cycle */
+        cycle_duration = distr(eng);
+       
         End = std::chrono::system_clock::now();
-        sec = (End-Start);
+        msec = std::chrono::duration_cast<std::chrono::milliseconds>(End - Start);
         _messageQueue.send(std::move(_currentPhase));
     }
 }
-
