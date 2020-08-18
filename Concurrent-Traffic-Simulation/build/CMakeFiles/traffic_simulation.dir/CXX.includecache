@@ -6,23 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/joker1251/Desktop/OWEN/CppND-Program-a-Concurrent-Traffic-Simulation-Sungwook/Concurrent-Traffic-Simulation/src/Intersection.h
-vector
+/home/joker1251/Desktop/OWEN/CppND-Program-a-Concurrent-Traffic-Simulation-Sungwook/Concurrent-Traffic-Simulation/src/TrafficLight.cpp
+iostream
 -
-future
+random
 -
-mutex
--
-memory
--
-TrafficObject.h
-/home/joker1251/Desktop/OWEN/CppND-Program-a-Concurrent-Traffic-Simulation-Sungwook/Concurrent-Traffic-Simulation/src/TrafficObject.h
 TrafficLight.h
 /home/joker1251/Desktop/OWEN/CppND-Program-a-Concurrent-Traffic-Simulation-Sungwook/Concurrent-Traffic-Simulation/src/TrafficLight.h
-
-/home/joker1251/Desktop/OWEN/CppND-Program-a-Concurrent-Traffic-Simulation-Sungwook/Concurrent-Traffic-Simulation/src/Street.h
-TrafficObject.h
-/home/joker1251/Desktop/OWEN/CppND-Program-a-Concurrent-Traffic-Simulation-Sungwook/Concurrent-Traffic-Simulation/src/TrafficObject.h
 
 /home/joker1251/Desktop/OWEN/CppND-Program-a-Concurrent-Traffic-Simulation-Sungwook/Concurrent-Traffic-Simulation/src/TrafficLight.h
 mutex
@@ -43,20 +33,4 @@ thread
 -
 mutex
 -
-
-/home/joker1251/Desktop/OWEN/CppND-Program-a-Concurrent-Traffic-Simulation-Sungwook/Concurrent-Traffic-Simulation/src/Vehicle.cpp
-iostream
--
-random
--
-Street.h
-/home/joker1251/Desktop/OWEN/CppND-Program-a-Concurrent-Traffic-Simulation-Sungwook/Concurrent-Traffic-Simulation/src/Street.h
-Intersection.h
-/home/joker1251/Desktop/OWEN/CppND-Program-a-Concurrent-Traffic-Simulation-Sungwook/Concurrent-Traffic-Simulation/src/Intersection.h
-Vehicle.h
-/home/joker1251/Desktop/OWEN/CppND-Program-a-Concurrent-Traffic-Simulation-Sungwook/Concurrent-Traffic-Simulation/src/Vehicle.h
-
-/home/joker1251/Desktop/OWEN/CppND-Program-a-Concurrent-Traffic-Simulation-Sungwook/Concurrent-Traffic-Simulation/src/Vehicle.h
-TrafficObject.h
-/home/joker1251/Desktop/OWEN/CppND-Program-a-Concurrent-Traffic-Simulation-Sungwook/Concurrent-Traffic-Simulation/src/TrafficObject.h
 
